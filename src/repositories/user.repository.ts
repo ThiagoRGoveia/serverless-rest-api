@@ -6,18 +6,9 @@ import { User } from '../models/user.model';
 
 export class UserRepository {
   constructor(private readonly dynamoDbClient: DynamoDBClient) {}
-  async exists(user: CreateUserDto): Promise<boolean> {
-    const email = user.email;
-    const userData = await this.dynamoDbClient.client.send(
-      new GetItemCommand({
-        TableName: this.dynamoDbClient.tableName,
-        Key: marshall({
-          pk: '#USER',
-          sk: `#EMAIL_${email}`,
-        }),
-      })
-    );
-    return !!userData.Item;
+  async exists(userDto: CreateUserDto): Promise<boolean> {
+    const user = this.findByEmail(userDto.email);
+    return !!user;
   }
   async save(userDto: CreateUserDto): Promise<User> {
     const user = User.fromDto(userDto);
@@ -29,5 +20,21 @@ export class UserRepository {
       })
     );
     return user;
+  }
+
+  async findByEmail(email: string): Promise<User> {
+    const userData = await this.dynamoDbClient.client.send(
+      new GetItemCommand({
+        TableName: this.dynamoDbClient.tableName,
+        Key: marshall({
+          pk: '#USER',
+          sk: `#EMAIL_${email}`,
+        }),
+      })
+    );
+    if (!userData.Item) {
+      return null;
+    }
+    return User.fromDynamoDB(unmarshall(userData.Item));
   }
 }

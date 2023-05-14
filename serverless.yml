@@ -33,6 +33,12 @@ functions:
       - httpApi:
           path: /users
           method: post
+  get-user:
+    handler: src/functions/users/get-user-function.handler
+    events:
+      - httpApi:
+          path: /users/{email}
+          method: get
 
 plugins:
   - serverless-offline
