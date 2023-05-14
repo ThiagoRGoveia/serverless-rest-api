@@ -1,6 +1,7 @@
+import { Validator } from '../../../utils/validator';
 import { IsNotEmpty, IsString, IsEmail, Matches, MinLength, MaxLength } from 'class-validator';
 
-export class CreateUserDto {
+export class CreateUserDto extends Validator {
   @IsString()
   @IsNotEmpty()
   @MinLength(3)
@@ -8,10 +9,6 @@ export class CreateUserDto {
   public name!: string;
   @IsEmail()
   @IsNotEmpty()
+  @MaxLength(255)
   public email!: string;
-  // @IsString()
-  // @IsNotEmpty()
-  // @MinLength(8)
-  // @Matches('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,100}$')
-  // public password!: string;
 }

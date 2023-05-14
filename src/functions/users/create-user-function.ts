@@ -5,9 +5,9 @@ import { CreateUserDto } from './dtos/create-user.dto';
 
 export const handler: APIGatewayProxyHandlerV2 = async event => {
   try {
-    const response = await createUserFactory().execute(
-      plainToInstance(CreateUserDto, JSON.parse(event.body as string))
-    );
+    const dto = plainToInstance(CreateUserDto, JSON.parse(event.body as string));
+    await dto.validate();
+    const response = await createUserFactory().execute(dto);
     return {
       statusCode: 201,
       body: JSON.stringify(response.body),
