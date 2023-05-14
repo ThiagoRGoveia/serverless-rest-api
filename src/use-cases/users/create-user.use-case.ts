@@ -1,3 +1,4 @@
+import { HttpError } from '../../../src/errors/http.error';
 import { CreateUserDto } from '../../functions/users/dtos/create-user.dto';
 import { User } from '../../models/user.model';
 import { UserRepository } from '../../repositories/user.repository';
@@ -12,7 +13,7 @@ export class CreateUserUseCase {
   async execute(userDto: CreateUserDto): Promise<Response<User>> {
     const userAlreadyExists = await this.userRepository.exists(userDto);
     if (userAlreadyExists) {
-      throw new Error('User already exists');
+      throw new HttpError({ statusCode: 400, message: 'User already exists' });
     }
     const user = await this.userRepository.save(userDto);
     return {
