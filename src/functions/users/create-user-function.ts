@@ -1,5 +1,5 @@
 import { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { createUserFactory } from '../../factories/create-user.factory';
+import { createUserFactory } from '../../factories/users/create-user.factory';
 import { plainToInstance } from 'class-transformer';
 import { CreateUserDto } from './dtos/create-user.dto';
 

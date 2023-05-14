@@ -1,5 +1,5 @@
 import { APIGatewayProxyHandlerV2 } from 'aws-lambda';
-import { getUserFactory } from '../../factories/get-user.factory';
+import { getUserFactory } from '../../factories/users/get-user.factory';
 
 export const handler: APIGatewayProxyHandlerV2 = async event => {
   try {
