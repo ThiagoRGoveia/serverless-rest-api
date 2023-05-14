@@ -27,6 +27,12 @@ functions:
       - httpApi:
           path: /
           method: get
+  create-user:
+    handler: src/functions/users/create-user-function.handler
+    events:
+      - httpApi:
+          path: /users
+          method: post
 
 plugins:
   - serverless-offline
