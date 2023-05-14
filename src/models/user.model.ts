@@ -1,4 +1,4 @@
-import { CreateUserDto } from '@src/functions/users/dtos/create-user.dto';
+import { CreateUserDto } from '../functions/users/dtos/create-user.dto';
 import { plainToInstance } from 'class-transformer';
 
 export class User {
