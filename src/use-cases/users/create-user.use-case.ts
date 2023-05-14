@@ -2,10 +2,7 @@ import { HttpError } from '../../../src/errors/http.error';
 import { CreateUserDto } from '../../functions/users/dtos/create-user.dto';
 import { User } from '../../models/user.model';
 import { UserRepository } from '../../repositories/user.repository';
-
-type Response<T> = {
-  body: Object;
-};
+import { Response } from '../types';
 
 export class CreateUserUseCase {
   constructor(private readonly userRepository: UserRepository) {}
