@@ -45,6 +45,12 @@ functions:
       - httpApi:
           path: /visits
           method: put
+  get-visits:
+    handler: src/functions/visits/get-visits-function.handler
+    events:
+      - httpApi:
+          path: /visits
+          method: get
 
 plugins:
   - serverless-offline
