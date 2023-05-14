@@ -39,6 +39,12 @@ functions:
       - httpApi:
           path: /users/{email}
           method: get
+  increment-visit:
+    handler: src/functions/visits/increment-visit-function.handler
+    events:
+      - httpApi:
+          path: /visits
+          method: put
 
 plugins:
   - serverless-offline
