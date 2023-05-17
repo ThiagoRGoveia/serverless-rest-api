@@ -3,7 +3,8 @@
     "dev": "sls offline -s dev --reloadHandler",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "config": "ts-jest config:init"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.115",
@@ -12,6 +13,7 @@
     "serverless-offline": "^12.0.4",
     "serverless-plugin-typescript": "^2.1.4",
     "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
     "typescript": "^5.0.4"
   },
   "dependencies": {
