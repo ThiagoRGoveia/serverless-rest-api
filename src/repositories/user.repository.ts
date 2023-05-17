@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
 export class UserRepository {
   constructor(private readonly dynamoDbClient: DynamoDBClient) {}
   async exists(userDto: CreateUserDto): Promise<boolean> {
-    const user = this.findByEmail(userDto.email);
+    const user = await this.findByEmail(userDto.email);
     return !!user;
   }
   async save(userDto: CreateUserDto): Promise<User> {
