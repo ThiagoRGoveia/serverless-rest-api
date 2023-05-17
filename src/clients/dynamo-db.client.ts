@@ -2,7 +2,7 @@ import { DynamoDBClient as DynamoDBClientLib } from '@aws-sdk/client-dynamodb';
 import { marshallOptions, unmarshallOptions } from '@aws-sdk/util-dynamodb';
 
 const config = {
-  region: process.env.AWS_REGION as string,
+  region: process.env.AWS_CONFIG_REGION as string,
 };
 
 export class DynamoDBClient {

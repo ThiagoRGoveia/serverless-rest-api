@@ -18,15 +18,9 @@ provider:
             - dynamodb:PutItem
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
-          Resource: 'arn:aws:dynamodb:${opt:region, file(env.json):AWS_REGION}:*:table/${file(env.json):DYNAMO_DB_TABLE}'
+          Resource: 'arn:aws:dynamodb:${opt:region, file(env.json):AWS_CONFIG_REGION}:*:table/${file(env.json):DYNAMO_DB_TABLE}'
 
 functions:
-  api:
-    handler: src/functions/index.handler
-    events:
-      - httpApi:
-          path: /
-          method: get
   create-user:
     handler: src/functions/users/create-user-function.handler
     events:
