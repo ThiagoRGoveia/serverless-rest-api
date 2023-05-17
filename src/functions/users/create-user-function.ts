@@ -10,6 +10,7 @@ export const handler: APIGatewayProxyHandlerV2 = async event => {
     const response = await createUserFactory().execute(dto);
     return {
       statusCode: 201,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(response.body),
     };
   } catch (error: any) {

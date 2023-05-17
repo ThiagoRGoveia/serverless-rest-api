@@ -7,6 +7,7 @@ export const handler: APIGatewayProxyHandlerV2 = async event => {
     const response = await getUserFactory().execute(email);
     return {
       statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(response.body),
     };
   } catch (error: any) {

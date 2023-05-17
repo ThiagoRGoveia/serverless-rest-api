@@ -6,6 +6,7 @@ export const handler: APIGatewayProxyHandlerV2 = async event => {
     const response = await getVisitsFactory().execute();
     return {
       statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         visits: response,
       }),
