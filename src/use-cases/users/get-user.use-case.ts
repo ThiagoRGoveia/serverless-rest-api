@@ -7,7 +7,6 @@ export class GetUserUseCase {
   constructor(private readonly userRepository: UserRepository) {}
 
   async execute(email: string): Promise<Response<User>> {
-    console.log('GetUserUseCase.execute', email);
     const user = await this.userRepository.findByEmail(email);
     if (!user) {
       throw new HttpError({ statusCode: 404, message: 'User not found' });
