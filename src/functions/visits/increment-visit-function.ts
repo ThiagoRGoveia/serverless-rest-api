@@ -14,6 +14,7 @@ export const handler: APIGatewayProxyHandlerV2 = async event => {
   } catch (error: any) {
     return {
       statusCode: error?.statusCode || 500,
+      headers: { 'Content-Type': 'application/json' },
       body: error?.message || 'Internal server error',
     };
   }
