@@ -1,6 +1,6 @@
 import { CreateUserDto } from '../functions/users/dtos/create-user.dto';
 import { plainToInstance } from 'class-transformer';
-import * as uuid from 'uuid';
+import uuid4 from 'uuid4';
 export class User {
   public name!: string;
   public email!: string;
@@ -16,7 +16,7 @@ export class User {
   }
 
   public generateId(): void {
-    this.id = uuid.v4();
+    this.id = uuid4();
   }
 
   public static fromDto(userDto: CreateUserDto): User {
