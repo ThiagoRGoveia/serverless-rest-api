@@ -31,7 +31,7 @@ functions:
     handler: src/functions/users/get-user-function.handler
     events:
       - httpApi:
-          path: /users/{email}
+          path: /users/{id}
           method: get
   increment-visit:
     handler: src/functions/visits/increment-visit-function.handler
@@ -62,6 +62,8 @@ resources:
             AttributeType: S
           - AttributeName: sk
             AttributeType: S
+          - AttributeName: localId1
+            AttributeType: S
         KeySchema:
           - AttributeName: pk
             KeyType: HASH
@@ -70,3 +72,12 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 5
           WriteCapacityUnits: 5
+        LocalSecondaryIndexes:
+          - IndexName: LocalId1Index
+            KeySchema:
+              - AttributeName: pk
+                KeyType: HASH
+              - AttributeName: localId1
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL
