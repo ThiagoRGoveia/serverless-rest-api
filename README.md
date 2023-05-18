@@ -4,9 +4,9 @@ This is a basic implementation of a REST API using the Serverless Framework, AWS
 
 # Endpoints
 
-## GET /users/{email}
+## GET /users/{id}
 
-Retrieves a user by email
+Retrieves a user by id
 
 ## POST /users
 
