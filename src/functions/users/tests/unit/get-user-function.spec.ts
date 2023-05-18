@@ -15,10 +15,10 @@ describe('Handler', () => {
   });
 
   it('should get a user and return a successful response', async () => {
-    const email = 'test@example.com';
+    const id = 'test@example.com';
     const event = {
       pathParameters: {
-        email: email,
+        id: id,
       },
     };
 
@@ -34,17 +34,18 @@ describe('Handler', () => {
 
     expect(result).toEqual({
       statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(responseBody),
     });
     expect(getUserFactory).toHaveBeenCalled();
-    expect(userFactoryMock.execute).toHaveBeenCalledWith(email);
+    expect(userFactoryMock.execute).toHaveBeenCalledWith(id);
   });
 
   it('should return an error response if an error occurs', async () => {
-    const email = 'test@example.com';
+    const id = 'test@example.com';
     const event = {
       pathParameters: {
-        email: email,
+        id: id,
       },
     };
 
@@ -55,6 +56,7 @@ describe('Handler', () => {
 
     expect(result).toEqual({
       statusCode: error.statusCode,
+      headers: { 'Content-Type': 'application/json' },
       body: error.message,
     });
   });

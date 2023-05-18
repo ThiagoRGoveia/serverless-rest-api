@@ -40,6 +40,7 @@ describe('Handler', () => {
 
     expect(result).toEqual({
       statusCode: 201,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(responseBody),
     });
     expect(createUserFactory).toHaveBeenCalled();
@@ -60,6 +61,7 @@ describe('Handler', () => {
 
     expect(result).toEqual({
       statusCode: error.statusCode,
+      headers: { 'Content-Type': 'application/json' },
       body: error.message,
     });
   });

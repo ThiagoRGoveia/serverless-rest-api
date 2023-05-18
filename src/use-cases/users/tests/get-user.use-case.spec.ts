@@ -9,18 +9,18 @@ describe('GetUserUseCase', () => {
 
   beforeEach(() => {
     userRepositoryMock = {
-      findByEmail: jest.fn(),
+      findByID: jest.fn(),
     };
     useCase = new GetUserUseCase(userRepositoryMock);
   });
 
   it('should throw an HttpError if user is not found', async () => {
-    userRepositoryMock.findByEmail.mockResolvedValue(null);
+    userRepositoryMock.findByID.mockResolvedValue(null);
 
     const email = 'test@example.com';
 
     await expect(useCase.execute(email)).rejects.toThrow(HttpError);
-    expect(userRepositoryMock.findByEmail).toHaveBeenCalledWith(email);
+    expect(userRepositoryMock.findByID).toHaveBeenCalledWith(email);
   });
 
   it('should return the user if the user is found', async () => {
@@ -30,13 +30,13 @@ describe('GetUserUseCase', () => {
       name: 'John Doe',
       email: 'test@test',
     });
-    userRepositoryMock.findByEmail.mockResolvedValue(expectedUser);
+    userRepositoryMock.findByID.mockResolvedValue(expectedUser);
 
     const email = 'test@example.com';
 
     const result = await useCase.execute(email);
 
     expect(result).toEqual({ body: expectedUser });
-    expect(userRepositoryMock.findByEmail).toHaveBeenCalledWith(email);
+    expect(userRepositoryMock.findByID).toHaveBeenCalledWith(email);
   });
 });

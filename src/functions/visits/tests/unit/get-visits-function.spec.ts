@@ -20,6 +20,7 @@ describe('Handler', () => {
 
     expect(result).toEqual({
       statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         visits: 1,
       }),
@@ -36,6 +37,7 @@ describe('Handler', () => {
 
     expect(result).toEqual({
       statusCode: error.statusCode,
+      headers: { 'Content-Type': 'application/json' },
       body: error.message,
     });
   });

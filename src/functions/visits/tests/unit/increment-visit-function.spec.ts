@@ -24,6 +24,7 @@ describe('Handler', () => {
 
     expect(result).toEqual({
       statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         visits: visitCount,
       }),
@@ -42,6 +43,7 @@ describe('Handler', () => {
 
     expect(result).toEqual({
       statusCode: error.statusCode,
+      headers: { 'Content-Type': 'application/json' },
       body: error.message,
     });
     expect(incrementVisitsFactory).toHaveBeenCalled();
